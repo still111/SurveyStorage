@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  mvc:
+    view:
+      prefix: WEB-INF/view/
+      suffix: .jsp
+  profiles:
+    active: dev
+  main:
+    banner-mode: off
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/my_db?serverTimezone=UTC
+    username: bestuser
+    password: bestuser
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: false
+    generate-ddl: false
