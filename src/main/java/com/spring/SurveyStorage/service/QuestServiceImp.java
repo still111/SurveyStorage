@@ -1,53 +1,53 @@
 package com.spring.SurveyStorage.service;
 
-import com.spring.SurveyStorage.dao.QuestionDAO;
 import com.spring.SurveyStorage.entity.Question;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.spring.SurveyStorage.entity.Survey;
+import com.spring.SurveyStorage.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestServiceImp implements com.spring.SurveyStorage.service.QuestService {
-    private final QuestionDAO questionDAO;
+    private final QuestionRepository questionRepository;
+    private final SurveyServiceImpl surveyServiceImpl;
 
-    public QuestServiceImp(QuestionDAO questionDAO) {
-        this.questionDAO = questionDAO;
+    public QuestServiceImp(QuestionRepository questionDAO, SurveyServiceImpl surveyServiceImpl) {
+        this.questionRepository = questionDAO;
+        this.surveyServiceImpl = surveyServiceImpl;
     }
 
     @Override
-    @Transactional
     public List<Question> getAllQuestions() {
-        return questionDAO.getAllQuestions();
+        return questionRepository.findAll();
     }
 
     @Override
-    @Transactional
     public List<Question> getDetQuestion(int survey_id) {
-        return questionDAO.getDetQuestions(survey_id);
+        List<Question> optional = questionRepository.findAllBySurvey_id(survey_id);
+        return optional;
     }
 
     @Override
-    @Transactional
     public void saveQuestion(int survey_id, Question question) {
-       questionDAO.saveQuestion(survey_id,question);
+        Survey survey = surveyServiceImpl.getSurvey(survey_id);
+        if (question.getSurvey() == null) survey.addQuestToSurvey(question);
+        surveyServiceImpl.saveSurvey(survey);
     }
 
     @Override
-    @Transactional
     public Question getQuest(int id) {
-      return questionDAO.getQuest(id);
+        Question question = null;
+        Optional<Question> optional = questionRepository.findById(id);
+        if (optional.isPresent()) {
+            question = optional.get();
+        }
+        return question;
     }
 
     @Override
-    @Transactional
-
-    public void saveQuestion(Question question) {
-        questionDAO.saveQuestion(question);
+    public void deleteQuest(int id) {
+        questionRepository.deleteById(id);
     }
-
-    @Override
-    @Transactional
-    public void deleteQuest(int id) {questionDAO.deleteQuest(id);}
 }

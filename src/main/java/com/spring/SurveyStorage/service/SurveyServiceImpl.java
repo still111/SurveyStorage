@@ -1,41 +1,43 @@
 package com.spring.SurveyStorage.service;
 
-import com.spring.SurveyStorage.dao.SurveyDAO;
 import com.spring.SurveyStorage.entity.Survey;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.spring.SurveyStorage.repository.SurveyRepository;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class SurveyServiceImpl  implements com.spring.SurveyStorage.service.SurveyService {
-    private final SurveyDAO surveyDAO;
+public class SurveyServiceImpl implements com.spring.SurveyStorage.service.SurveyService {
+    private final SurveyRepository surveyRepository;
 
-    public SurveyServiceImpl(SurveyDAO surveyDAO) {
-        this.surveyDAO = surveyDAO;
+    public SurveyServiceImpl(SurveyRepository surveyDAO) {
+        this.surveyRepository = surveyDAO;
     }
 
     @Override
-    @Transactional
     public List<Survey> getAllSurveys() {
-        return surveyDAO.getAllSurveys();
+        return surveyRepository.findAll();
     }
 
     @Override
-    @Transactional
-    public void saveSurvey(Survey survey) {surveyDAO.saveSurvey(survey);}
+    public void saveSurvey(Survey survey) {
+        surveyRepository.save(survey);
+    }
 
     @Override
-    @Transactional
     public Survey getSurvey(int id) {
-        return surveyDAO.getSurvey(id);
+        Survey survey = null;
+        Optional<Survey> optional = surveyRepository.findById(id);
+        if (optional.isPresent()) {
+            survey = optional.get();
+        }
+        return survey;
     }
 
     @Override
-    @Transactional
     public void deleteSurvey(int id) {
-        surveyDAO.deleteSurvey(id);
+        surveyRepository.deleteById(id);
     }
 
 }

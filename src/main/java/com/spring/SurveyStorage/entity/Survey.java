@@ -1,6 +1,6 @@
 package com.spring.SurveyStorage.entity;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -25,11 +25,11 @@ public class Survey {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "survey",fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "survey", fetch = FetchType.EAGER)
     private List<Question> questions;
 
-    public void addQusettoSurvey(Question question){
-        if (questions == null ){
+    public void addQuestToSurvey(Question question) {
+        if (questions == null) {
             questions = new ArrayList<>();
         }
         questions.add(question);

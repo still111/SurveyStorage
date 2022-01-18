@@ -23,9 +23,7 @@
     <form:form action="showAllSurveys" modelAttribute="allQuest">
         <c:forEach var="quest" items="${allQuest}">
 
-            <c:url var ="updateButton" value="/updateQuest">
-                <c:param name="quest_id" value="${quest.id}"/>
-            </c:url>
+
             <c:url var ="deleteButton" value="/deleteQuest">
                 <c:param name="quest_id" value="${quest.id}"/>
             </c:url>
@@ -37,11 +35,10 @@
                 <td>${quest.var1}</td>
                 <td>${quest.var2}</td>
                 <td>${quest.var3}</td>
-                <td>
-                    <input type="button" value="Create copy"
-                           onclick="window.location.href = '${updateButton}' "/>
-            <input type="button" value="Delete"
-           onclick="window.location.href = '${deleteButton}' "/>
+                    <td>
+
+                        <input type="button" value="Delete"
+                               onclick="window.location.href = '${deleteButton}' "/>
                        </td>
                 </tr>
 

@@ -1,8 +1,8 @@
-package com.spring.SurveyStorage.Security;
+package com.spring.SurveyStorage.service;
 
 
-import com.spring.SurveyStorage.repository.UserRepository;
 import com.spring.SurveyStorage.entity.User;
+import com.spring.SurveyStorage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

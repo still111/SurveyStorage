@@ -60,15 +60,8 @@ public class QuestController {
     }
 
 
-    @RequestMapping("/updateQuest")
-    public String updateSurvey(@RequestParam("quest_id") int id, Model model){
-        Question question =  questService.getQuest(id);
-        model.addAttribute("question",question);
-        return "quest-info";
-    }
-
     @RequestMapping("/deleteQuest")
-    public String deteteSurvey(@RequestParam ("quest_id") int id){
+    public String deleteQuest(@RequestParam("quest_id") int id) {
         questService.deleteQuest(id);
         return "redirect:/showAllSurveys";
     }

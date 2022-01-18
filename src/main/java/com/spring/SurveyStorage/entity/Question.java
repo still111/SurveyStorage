@@ -25,9 +25,9 @@ public class Question {
     @Column(name = "var3")
     private String var3;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.DETACH,
-            CascadeType.MERGE,CascadeType.REFRESH})
-    @JoinColumn(name="survey_id", nullable=false)
-   private Survey survey;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
+            CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "survey_id", nullable = false)
+    private Survey survey;
 
 }

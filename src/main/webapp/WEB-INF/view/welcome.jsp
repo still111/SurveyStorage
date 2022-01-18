@@ -13,7 +13,7 @@
 <br><br>
 <security:authorize access="hasAuthority('developers:admin')">
     <input type="button" value="List of users"
-           onclick="window.location.href = 'showNicks'">
+           onclick="window.location.href = 'allUsers'">
     Only for Admin
 </security:authorize>
 

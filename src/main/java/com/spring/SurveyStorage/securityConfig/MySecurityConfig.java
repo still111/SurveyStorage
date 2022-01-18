@@ -1,4 +1,4 @@
-package com.spring.SurveyStorage.SecConfig;
+package com.spring.SurveyStorage.securityConfig;
 
 import com.spring.SurveyStorage.model.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
