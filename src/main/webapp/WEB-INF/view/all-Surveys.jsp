@@ -82,9 +82,7 @@
 <input type="submit" value="back"
        onclick="window.history.back()">
 <br><br><br>
-<security:authorize access="hasAuthority('developers:write')">
- <a href="showAllQuestions"> List of all questions </a>
-</security:authorize>
+
 <script>
         $('.table tbody tr').each(function(i) {
                 var number = i;

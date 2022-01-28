@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   mvc:
@@ -23,3 +23,12 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     open-in-view: false
     generate-ddl: false
+
+security:
+  jwt:
+    token:
+      header: Authorization
+      secret-key: secret-key
+      expire-length: 300000
+
+

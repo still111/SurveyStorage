@@ -24,9 +24,8 @@ public class QuestServiceImp implements com.spring.SurveyStorage.service.QuestSe
     }
 
     @Override
-    public List<Question> getDetQuestion(int survey_id) {
-        List<Question> optional = questionRepository.findAllBySurvey_id(survey_id);
-        return optional;
+    public List<Question> getDetQuestion(long survey_id) {
+        return questionRepository.findAllBySurvey_id(survey_id);
     }
 
     @Override
